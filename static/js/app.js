@@ -13,12 +13,12 @@ form.on("submit",runEnter);
 // Use d3 to automatically populate tableData
 function defaultPopulate(tableData) {
     tableData.forEach((ufoSighting) => {
-            var row = tbody.append("tr");
-            Object.entries(ufoSighting).forEach(([key, value]) => {
-                var cell = row.append("td");
-                cell.text(value);
-            });
+        var row = tbody.append("tr");
+        Object.entries(ufoSighting).forEach(([key, value]) => {
+            var cell = row.append("td");
+            cell.text(value);
         });
+    });
 };
 
 defaultPopulate(tableData);
@@ -29,24 +29,17 @@ function runEnter() {
     d3.event.preventDefault();
 
     // Select the input element and get the raw HTML node
-    var inputDate = d3.select("#datetime").property("value");
-    var inputCity = d3.select("#city").property("value").toLowerCase();
-    var inputState = d3.select("#state").property("value").toLowerCase();
-    var inputCountry = d3.select("#country").property("value").toLowerCase();
-    var inputShape = d3.select("#shape").property("value").toLowerCase();
+    var inputElement = d3.select("#datetime");
 
-    // Store the input conditions that have values into an array and set up conditional statement
-    var inputArray = [["datetime",inputDate], ["city", inputCity], ["state", inputState], ["country", inputCountry], ["shape", inputShape]];
-    var searchArray = inputArray.filter(inputItem => inputItem[1] !== "");
-    var filterCondition = searchArray.map(searchItem => "ufoSighting." + searchItem[0] + "===" + "'" + searchItem[1] + "'").join("&&")
+    // Get the value property of the input element
+    var inputValue = inputElement.property("value");
   
-    // Filter the data by input conditions
-    var filteredData = tableData.filter(ufoSighting => eval(filterCondition));
+    // Use the form input to filter the data by date
+    var filteredData = tableData.filter(ufoSighting => ufoSighting.datetime === inputValue);
     console.log(filteredData);
-    
+
     // Reset the previous filtered data
     tbody.html("");
-    
     // Display filtered data
     filteredData.forEach((ufoSighting) => {
         var row = tbody.append("tr");
@@ -57,9 +50,11 @@ function runEnter() {
     });
     // If no value entered in any area, autopopulate the entire data table
     if (searchArray.length === 0) {
+    if (inputValue === "") {
         defaultPopulate(tableData);
     } else if (filteredData.length === 0) {
         // If no data found, display "No UFO Sighting found. Try again!"
         tbody.append("tr").text("No UFO Sighting found. Try again!");
+    }
     };
 };
