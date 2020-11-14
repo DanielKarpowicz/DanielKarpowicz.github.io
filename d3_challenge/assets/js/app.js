@@ -25,7 +25,7 @@ var chartGroup = svg.append("g")
   .attr("transform", `translate(${margin.left}, ${margin.top})`);
 
 // Set initial parameters of x and y aixs
-var selectedX = "poverty";
+var selectedX = "smokes";
 var selectedY = "healthcare";
 
 // Update the scale for x upon selected parameter
