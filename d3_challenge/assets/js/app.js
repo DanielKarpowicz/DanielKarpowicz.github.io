@@ -53,18 +53,6 @@ function renderText(textGroup, newXScale, selectedX, newYScale, selectedY) {
   return textGroup;
 }
 
-// Stylize x axis values for tooltips
-function styleX(value, selectedX) {
-  switch (selectedX) {
-    case "poverty":
-      return `${value}%`;
-    case "income":
-      return `${value}`;
-    default:
-      return `${value}`;
-  }
-}
-
 // Update circle group
 function updateToolTip(selectedX, selectedY, circlesGroup) {
     if (selectedX === "poverty") {
