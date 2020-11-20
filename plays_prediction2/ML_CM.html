@@ -34,6 +34,17 @@
     <link href="jumbotron.css" rel="stylesheet">
   </head>
   <body>
+    <div class="header">
+      <h1>Header</h1>
+      <p>Machine Learning Output</p>
+    .header {
+      padding: 60px;
+      text-align: center;
+      background: #1abc9c;
+      color: white;
+      font-size: 30px;
+    }
+  </div>
     <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
   <a class="navbar-brand" href="#">NFL Analysis</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
@@ -64,7 +75,7 @@
   </div>
 </nav>
 
-<p><img src="ConfusionMatrixOutput/CM.png" alt="CM Output" ALIGN='right' style="style=width:600px;height:600px;"></p>
+<p><img src="ConfusionMatrixOutput/CM.png" alt="CM Output" style="vertical-align:middle"></p>
 
 <p>The confusion matrix output. The x axis represents the predicted plays and the y axis represents the true plays.</p>
 
